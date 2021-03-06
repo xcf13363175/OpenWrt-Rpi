@@ -180,19 +180,19 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: OpenWrt_buildinfo
-          path: ./lede/artifact/buildinfo/
+          path: ./$OPENWRTROOT/artifact/buildinfo/
 
       - name: Deliver package
         uses: actions/upload-artifact@v2
         with:
           name: OpenWrt_package
-          path: ./lede/artifact/package/
+          path: ./$OPENWRTROOT/artifact/package/
 
       - name: Deliver firmware
         uses: actions/upload-artifact@v2
         with:
           name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
-          path: ./lede/bin/targets/
+          path: ./$OPENWRTROOT/bin/targets/
   
 
       - name: Upload release asset
@@ -200,6 +200,6 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.YOURTOKEN }}
-          file: ./lede/artifact/firmware/*
+          file: ./$OPENWRTROOT/artifact/firmware/*
           tag: ${{ github.ref }}
           file_glob: true
